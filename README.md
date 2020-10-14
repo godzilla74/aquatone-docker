@@ -1,11 +1,20 @@
-Dockerfile to install [aquatone](https://github.com/michenriksen/aquatone) (the go version) and [Chromium (headless)](https://www.chromium.org/getting-involved/download-chromium).  More info about Aquatone on [Michael Henriksen's blog](https://michenriksen.com/blog/aquatone-now-in-go/).
+Forked from: https://github.com/youngderekm/aquatone-docker but had to make some modifications to the Dockerfile to get
+things to work correctly.
 
-This docker image does not recompile Aquatone or Chromium, it installs the binaries of each.
+Get started with:
+```
+git clone git@github.com:godzilla74/aquatone-docker.git
+```
 
-Can be used as so:
+Then you'll probably want to modify this line:
+```
+vim Dockerfile
+---> change ENV TZ=Whatever
+```
 
-    echo 'www.cnn.com' | docker run -v ~/scratch/aquatone:/output --rm -i youngderekm/aquatone -out /output
+Then build it and run:
+```
+sudo docker build -t aquatone .
 
-    # report and all output is now available in ~/scratch/aquatone
-
-This project is licensed under the terms of the MIT license.
+cat your_domain_file | sudo docker run -v /where/to/output:/output --rm -i aquatone:latest -out /output
+```
